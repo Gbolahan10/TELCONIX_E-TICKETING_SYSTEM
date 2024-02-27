@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import App from './server';
 import AuthRoute from './src/routes/auth.route';
 import UsersRoute from './src/routes/users.route';

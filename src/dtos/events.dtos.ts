@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
     IsObject,
     IsNotEmptyObject,
@@ -12,7 +13,8 @@ import {
     IsEnum,
     IsDateString,
     IsBoolean,
-    IsOptional
+    IsOptional,
+    IsArray
   } from 'class-validator';
 
 
@@ -40,8 +42,10 @@ import {
   
     @IsString()
     public venue: string;
-  
+    
+    @IsArray()
     @ValidateNested()
+    @Type(() => CreateTicketTypesDto)
     public ticketTypes: CreateTicketTypesDto[];
   }
 

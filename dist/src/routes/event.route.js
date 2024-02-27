@@ -16,7 +16,7 @@ class EventsRoute {
     initializeRoutes() {
         this.router.post(`${this.path}/create`, (0, validation_middleware_1.default)(events_dtos_1.CreateEventDto, 'body'), auth_middleware_1.default, this.eventsController.createEvent);
         this.router.get(`${this.path}/:eventId`, auth_middleware_1.default, this.eventsController.viewEvent);
-        this.router.get(`${this.path}/all`, auth_middleware_1.default, this.eventsController.viewAllEvents);
+        this.router.get(`${this.path}/`, auth_middleware_1.default, this.eventsController.viewAllEvents);
     }
 }
 exports.default = EventsRoute;

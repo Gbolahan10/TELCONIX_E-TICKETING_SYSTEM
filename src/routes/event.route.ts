@@ -17,7 +17,7 @@ class EventsRoute implements Routes {
   private initializeRoutes() {
     this.router.post(`${this.path}/create`, validationMiddleware(CreateEventDto, 'body'), authMiddleware, this.eventsController.createEvent);
     this.router.get(`${this.path}/:eventId`, authMiddleware, this.eventsController.viewEvent);
-    this.router.get(`${this.path}/all`, authMiddleware, this.eventsController.viewAllEvents);
+    this.router.get(`${this.path}/`, authMiddleware, this.eventsController.viewAllEvents);
     }
 }
 

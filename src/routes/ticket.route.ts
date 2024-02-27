@@ -13,8 +13,8 @@ class TicketsRoute implements Routes {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}/purchase/:event_id`, this.ticketsController.purchaseEventTicket);
-    this.router.get(`${this.path}/all/:event_id`, authMiddleware, this.ticketsController.viewAllTickets);
+    this.router.get(`${this.path}/purchase/:eventId`, this.ticketsController.purchaseEventTicket);
+    this.router.get(`${this.path}/all/:eventId`, authMiddleware, this.ticketsController.viewAllTickets);
     }
 }
 

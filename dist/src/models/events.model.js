@@ -44,9 +44,7 @@ const EventSchema = new mongoose_1.default.Schema({
             },
             boughtTickets: {
                 type: Number,
-                default: function () {
-                    return this.totalTickets;
-                }
+                default: 0
             },
         }],
     tickets: [{

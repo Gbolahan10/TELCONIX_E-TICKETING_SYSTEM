@@ -20,14 +20,18 @@ class PaymentsController {
               ticketId: ticketId,
               name: name,
               email: email,
-              ticketType: ticketType,
-              purchaseDate: new Date()
+              ticketType: ticketType
           }
+          await this.eventService.update(
+            { _id: eventId },
+            { $push: { tickets: ticketData } }
+          );
 
           await this.eventService.update(
-              { _id: eventId, 'ticketTypes.name': name }, 
-              { $push: { tickets: ticketData }, $inc: { 'ticketTypes.$.boughtTickets': 1 } }
-            );
+              { _id: eventId, 'ticketTypes.name': ticketType },
+              { $inc: { 'ticketTypes.$.boughtTickets': 1 }}
+          );
+          // console.log(rreess)
           return ticketId
 
       } catch (error) {
@@ -110,12 +114,13 @@ class PaymentsController {
             // Handle the event
             switch (event.type) {
                 case 'checkout.session.completed':
-                    console.log(event)
+                    const custom_fields = event.data.object.custom_fields
                     
-                    const email = event.data.object.custom_fields[0].text.value
-                    const name = event.data.object.custom_fields[1].text.value
-                    const ticketType = event.data.object.custom_fields[2].text.label
-                    const eventId = event.data.object.custom_fields[2].text.value
+                    const email = (custom_fields.find(obj => obj.key === 'email')).text.value
+                    const name = (custom_fields.find(obj => obj.key === 'fullName')).text.value
+                    const eventDetails = (custom_fields.find(obj => obj.key === 'eventDetails')).dropdown.options[0]
+                    const ticketType = eventDetails.label
+                    const eventId = eventDetails.value
                     const userId = (await this.eventService.find({ _id: eventId })).result.userId
 
                     const ticketId = await this.createTicket(eventId, ticketType, name, email)
@@ -126,6 +131,7 @@ class PaymentsController {
                       ticketId,
                       transaction_data: event
                     };
+                    console.log(transaction)
 
                     await this.transactionService.create(transaction)
 

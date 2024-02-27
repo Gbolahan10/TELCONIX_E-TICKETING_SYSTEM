@@ -12,8 +12,8 @@ class TicketsRoute {
         this.initializeRoutes();
     }
     initializeRoutes() {
-        this.router.get(`${this.path}/purchase/:event_id`, this.ticketsController.purchaseEventTicket);
-        this.router.get(`${this.path}/all/:event_id`, auth_middleware_1.default, this.ticketsController.viewAllTickets);
+        this.router.get(`${this.path}/purchase/:eventId`, this.ticketsController.purchaseEventTicket);
+        this.router.get(`${this.path}/all/:eventId`, auth_middleware_1.default, this.ticketsController.viewAllTickets);
     }
 }
 exports.default = TicketsRoute;

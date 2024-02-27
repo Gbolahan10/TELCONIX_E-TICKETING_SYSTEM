@@ -28,7 +28,7 @@ declare class DatabaseService {
         error: any;
         result?: undefined;
     }>;
-    update(query: any, payload: any): Promise<{
+    update(query: any, payload: any, option?: any): Promise<{
         status: boolean;
         error?: undefined;
     } | {

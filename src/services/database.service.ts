@@ -34,6 +34,7 @@ class DatabaseService {
   public async findAll(query = null, page = null, limit = null, selectFields = '') {
     try {
       let queryBuilder = this.Model.find(query);
+      console.log(queryBuilder)
       if (limit && page !== null) {
         queryBuilder = queryBuilder.limit(limit).skip(limit * page);
       }
@@ -51,9 +52,9 @@ class DatabaseService {
     }
   }
 
-  public async update(query, payload) {
+  public async update(query, payload, option=null) {
     try {
-      await this.Model.updateOne(query, payload);
+      await this.Model.findOneAndUpdate(query, payload, option);
       return { status: true };
     } catch (error) {
       return { status: false, error };

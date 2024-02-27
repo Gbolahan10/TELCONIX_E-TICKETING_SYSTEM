@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventDto = exports.TicketsDto = exports.TicketTypesDto = exports.CreateEventDto = exports.CreateTicketTypesDto = void 0;
 const tslib_1 = require("tslib");
+const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 class CreateTicketTypesDto {
 }
@@ -39,7 +40,9 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", String)
 ], CreateEventDto.prototype, "venue", void 0);
 tslib_1.__decorate([
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.ValidateNested)(),
+    (0, class_transformer_1.Type)(() => CreateTicketTypesDto),
     tslib_1.__metadata("design:type", Array)
 ], CreateEventDto.prototype, "ticketTypes", void 0);
 class TicketTypesDto {

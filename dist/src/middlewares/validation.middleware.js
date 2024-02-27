@@ -7,7 +7,28 @@ const validationMiddleware = (type, value = 'body', skipMissingProperties = fals
     return (req, res, next) => {
         (0, class_validator_1.validate)((0, class_transformer_1.plainToClass)(type, req[value]), { skipMissingProperties, whitelist, forbidNonWhitelisted }).then((errors) => {
             if (errors.length > 0) {
-                const message = errors.map((error) => Object.values(error.constraints)).join(', ');
+                const message = errors
+                    .map((error) => {
+                    if (error.children && error.children.length > 0) {
+                        return error.children[0].children
+                            .map((childError) => {
+                            if (childError.constraints) {
+                                return Object.values(childError.constraints).join(', ');
+                            }
+                            else {
+                                return '';
+                            }
+                        })
+                            .join(', ');
+                    }
+                    else if (error.constraints) {
+                        return Object.values(error.constraints).join(', ');
+                    }
+                    else {
+                        return '';
+                    }
+                })
+                    .join(', ');
                 next(new HttpException_1.HttpException(400, message));
             }
             else {

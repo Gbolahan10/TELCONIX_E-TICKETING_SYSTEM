@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
+require("reflect-metadata");
 const server_1 = tslib_1.__importDefault(require("./server"));
 const auth_route_1 = tslib_1.__importDefault(require("./src/routes/auth.route"));
 const users_route_1 = tslib_1.__importDefault(require("./src/routes/users.route"));

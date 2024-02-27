@@ -27,11 +27,11 @@ class EventsController {
             try {
                 const { _id } = req.user;
                 const { eventId } = req.params;
-                const eventData = await this.eventService.find({ _id: eventId, userId: _id }, '-event_id -_id -userId');
+                const eventData = await this.eventService.find({ _id: eventId, userId: _id }, '-_id -userId');
                 if (!eventData.status) {
                     throw new HttpException_1.HttpException(404, "Event not found");
                 }
-                res.status(200).json({ data: eventData, message: 'Event returned successfully' });
+                res.status(200).json({ data: eventData.result, message: 'Event returned successfully' });
             }
             catch (error) {
                 next(error);
@@ -44,7 +44,7 @@ class EventsController {
                 if (!eventsData.status) {
                     throw new HttpException_1.HttpException(404, "No Events Found");
                 }
-                res.status(200).json({ data: eventsData, message: 'Events returned successfully' });
+                res.status(200).json({ data: eventsData, message: 'All events returned successfully' });
             }
             catch (error) {
                 next(error);

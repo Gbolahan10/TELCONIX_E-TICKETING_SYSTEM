@@ -34,7 +34,6 @@ class DatabaseService {
     async findAll(query = null, page = null, limit = null, selectFields = '') {
         try {
             let queryBuilder = this.Model.find(query);
-            console.log(queryBuilder);
             if (limit && page !== null) {
                 queryBuilder = queryBuilder.limit(limit).skip(limit * page);
             }

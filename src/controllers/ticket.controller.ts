@@ -32,8 +32,8 @@ class TicketsController {
             for (const ticketType of allTicketTypes) {
                 if (ticketType.boughtTickets < ticketType.totalTickets) {
                     const paymentLink = await this.paymentsController.generatePaymentLink(eventData.result.eventName, ticketType.unitPrice, eventId, ticketType.name);
-                    const { _id, id, ...ticketData } = ticketType.toObject(); // Exclude _id field from ticketType
-                    const modifiedTicketData = { ...ticketData, paymentLink }; // Add paymentLink to ticketData
+                    const { _id, id, ...ticketData } = ticketType.toObject(); 
+                    const modifiedTicketData = { ...ticketData, paymentLink };
                     data.push(modifiedTicketData);
                 }
             }

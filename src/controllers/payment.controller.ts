@@ -31,7 +31,6 @@ class PaymentsController {
               { _id: eventId, 'ticketTypes.name': ticketType },
               { $inc: { 'ticketTypes.$.boughtTickets': 1 }}
           );
-          // console.log(rreess)
           return ticketId
 
       } catch (error) {
@@ -131,7 +130,6 @@ class PaymentsController {
                       ticketId,
                       transaction_data: event
                     };
-                    console.log(transaction)
 
                     await this.transactionService.create(transaction)
 

@@ -12,6 +12,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+ 
+      - name: Check Heroku CLI version
+        run: heroku --version
+      
+      - name: Display GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
       - name: deploy
         env:
@@ -19,5 +27,5 @@ jobs:
           HEROKU_APP_NAME: "telconix"
         run: |
           heroku container:login
-          heroku container:push web -a $(appname)
-          heroku container:release web -a $(appname)
+          heroku container:push web -a $HEROKU_APP_NAME
+          heroku container:release web -a $HEROKU_APP_NAME

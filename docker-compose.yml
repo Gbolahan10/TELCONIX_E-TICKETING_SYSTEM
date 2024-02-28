@@ -7,5 +7,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    # volumes:
-    #   - ./src:/usr/src/app/src   # Mount the source code as a volume

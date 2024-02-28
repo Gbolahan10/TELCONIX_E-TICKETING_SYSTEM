@@ -11,9 +11,6 @@ class AuthController {
     public authService = new AuthService();
     public userService = new DatabaseService(User);
     
-    /**
-     * * Initial registration to onboard new user and store:
-    */
     public signUp = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const { firstName, lastName, email, password, countryCode, phoneNumber }: CreateUserDto = req.body;

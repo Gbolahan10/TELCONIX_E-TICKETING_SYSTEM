@@ -11,7 +11,6 @@ import { Routes } from './src/interfaces/routes.interface';
 import errorMiddleware from './src/middlewares/error.middleware';
 import { logger, stream } from './src/utils/helpers/logger';
 
-
 declare global {
   namespace Express {
     interface Request {
@@ -46,7 +45,6 @@ const storeRawBodyMiddleware = (
     next(err);
   });
 };
-
 
 
 

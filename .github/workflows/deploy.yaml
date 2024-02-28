@@ -12,7 +12,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
- 
+        with:
+          node-version: '20'
+
       - name: Check Heroku CLI version
         run: heroku --version
       

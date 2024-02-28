@@ -27,20 +27,20 @@ npm run build
 
 Use Stripe CLI to simulate Stripe events in your local environment.
  
- - step 1
+ - step 1:
  create a stripe account and retrieve your unique ENDPOINT_SECRET and WEBHOOK_API_KEY. Replace them with their corresponding environment variables in the .env.development file.
- 
-- step 2
+
+- step 2:
 Use this link to learn how to setup stripe-CLI on your system
 https://docs.stripe.com/stripe-cli
 
-- step 3
+- step 3:
 Log in with your Stripe account
 ```bash
 stripe login
 ```
 
-- step 4
+- step 4:
 Setup stripe to listen for webhook events at designated url
 ```bash
 stripe listen --forward-to localhost:8000/payment/webhook

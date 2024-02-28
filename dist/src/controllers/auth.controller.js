@@ -10,9 +10,6 @@ class AuthController {
     constructor() {
         this.authService = new auth_service_1.default();
         this.userService = new database_service_1.default(users_model_1.default);
-        /**
-         * * Initial registration to onboard new user and store:
-        */
         this.signUp = async (req, res, next) => {
             try {
                 const { firstName, lastName, email, password, countryCode, phoneNumber } = req.body;

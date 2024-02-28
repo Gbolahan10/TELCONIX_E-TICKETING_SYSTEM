@@ -54,7 +54,7 @@ class EventsController {
             throw new HttpException(404, "No Events Found");
             }
 
-            res.status(200).json({ data: eventsData, message: 'All events returned successfully' });
+            res.status(200).json({ data: eventsData.result, message: 'All events returned successfully' });
         } catch (error) {
             next(error);
         }

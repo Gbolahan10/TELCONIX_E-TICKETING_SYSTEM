@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Login to Heroku
+      - name: Login to Heroku CONTAINER
         run: heroku container:login
 
       - name: Push Docker image to Heroku
